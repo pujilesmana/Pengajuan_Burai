@@ -3,9 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_pengajuan extends CI_Model
 {
-	public function addPengajuan($nama, $nik, $kategori, $gambarKTP, $gambarKK)
+	public function addPengajuan($nama, $nik, $kategori, $file)
 	{
-		return $this->db->query("INSERT INTO pengajuan(pengajuan_nama, pengajuan_nik, pengajuan_kategori, pengajuan_ktp, pengajuan_kk) VALUES ('$nama', '$nik', '$kategori','$gambarKTP','$gambarKK')");
+		return $this->db->query("INSERT INTO pengajuan(pengajuan_nama, pengajuan_nik, pengajuan_kategori, pengajuan_file) VALUES ('$nama', '$nik', '$kategori', '$file')");
 	}
 
 	public function getPengajuan()
