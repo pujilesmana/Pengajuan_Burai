@@ -10,13 +10,17 @@ class M_pengajuan extends CI_Model
 
 	public function getPengajuan()
 	{
-		return $this->db->query("SELECT pengajuan_id,pengajuan_nama, DATE_FORMAT(pengajuan_tanggal, '%d - %m - %Y') AS tanggal, pengajuan_nik, pengajuan_kategori, pengajuan_ktp, pengajuan_kk, pengajuan_status, pengajuan_surat, pengajuan_catatan FROM pengajuan ORDER BY pengajuan_id DESC");
+		return $this->db->query("SELECT pengajuan_id,pengajuan_nama, DATE_FORMAT(pengajuan_tanggal, '%d - %m - %Y') AS tanggal, pengajuan_nik, pengajuan_kategori, pengajuan_file, pengajuan_status, pengajuan_surat, pengajuan_catatan FROM pengajuan ORDER BY pengajuan_id DESC LIMIT 250");
 	}
 
+	public function getFile($id)
+	{
+		return $this->db->query("SELECT pengajuan_file FROM pengajuan WHERE pengajuan_id = '$id'");
+	}
 
 	public function getPengajuanDownload()
 	{
-		return $this->db->query("SELECT pengajuan_id,pengajuan_nama, DATE_FORMAT(pengajuan_tanggal, '%d - %m - %Y') AS tanggal, pengajuan_nik, pengajuan_kategori, pengajuan_ktp, pengajuan_kk, pengajuan_status, pengajuan_surat, pengajuan_catatan FROM pengajuan WHERE pengajuan_status = 1 OR pengajuan_status = 2 ORDER BY pengajuan_id DESC");
+		return $this->db->query("SELECT pengajuan_id,pengajuan_nama, DATE_FORMAT(pengajuan_tanggal, '%d - %m - %Y') AS tanggal, pengajuan_nik, pengajuan_kategori, pengajuan_file, pengajuan_status, pengajuan_surat, pengajuan_catatan FROM pengajuan WHERE pengajuan_status = 1 OR pengajuan_status = 2 ORDER BY pengajuan_id DESC");
 	}
 
 

@@ -13,6 +13,14 @@ class Pengajuan extends CI_Controller
 		}
 	}
 
+	function getFile()
+	{
+		$get = $this->input->get();
+		$id = $get['id'];
+		$hasil = $this->pengajuan->getFile($id)->result_array();
+		echo json_encode($hasil);
+	}
+
 	public function upStatus()
 	{
 		$post = $this->input->post();

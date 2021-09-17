@@ -21,7 +21,7 @@ class Pengajuan extends CI_Controller
 
 		if ($kategori == "Surat Keterangan Tidak Mampu") {
 
-			if (!empty($_FILES['ktpSKTM']['name']) && !empty($_FILES['rumah']['name'])) {
+			if (!empty($_FILES['ktpSKTM']['name']) && !empty($_FILES['rumahSKTM']['name'])) {
 
 				if ($_FILES['ktpSKTM']['type'] == "image/jpeg" || $_FILES['ktpSKTM']['type'] == "image/png" || $_FILES['ktpSKTM']['type'] == "image/bmp" || $_FILES['ktpSKTM']['type'] == "image/jpg") {
 					if ($_FILES['rumahSKTM']['type'] == "image/jpeg" || $_FILES['rumahSKTM']['type'] == "image/png" || $_FILES['rumahSKTM']['type'] == "image/bmp" || $_FILES['rumahSKTM']['type'] == "image/jpg") {
@@ -681,14 +681,14 @@ class Pengajuan extends CI_Controller
 
 		//Kartu keluarga baru
 		elseif ($kategori == "Kartu keluarga baru") {
-			if (!empty($_FILES['ktpayah']['name']) && !empty($_FILES['ktpibu']['name']) && !empty($_FILES['bukunikah']['name']) && !empty($_FILES['f107']['name'])  && !empty($_FILES['f102']['name'])) {
+			if (!empty($_FILES['ktpayah']['name']) && !empty($_FILES['ktpibu']['name']) && !empty($_FILES['bukunikah']['name']) && !empty($_FILES['f107']['name'])  && !empty($_FILES['f105']['name']) && !empty($_FILES['f201']['name'])) {
 
 				if ($_FILES['ktpayah']['type'] == "image/jpeg" || $_FILES['ktpayah']['type'] == "image/png" || $_FILES['ktpayah']['type'] == "image/bmp" || $_FILES['ktpayah']['type'] == "image/jpg") {
 					if ($_FILES['ktpibu']['type'] == "image/jpeg" || $_FILES['ktpibu']['type'] == "image/png" || $_FILES['ktpibu']['type'] == "image/bmp" || $_FILES['ktpibu']['type'] == "image/jpg") {
 						if ($_FILES['bukunikah']['type'] == "image/jpeg" || $_FILES['bukunikah']['type'] == "image/png" || $_FILES['bukunikah']['type'] == "image/bmp" || $_FILES['bukunikah']['type'] == "image/jpg") {
 							if ($_FILES['f107']['type'] == "image/jpeg" || $_FILES['f107']['type'] == "image/png" || $_FILES['f107']['type'] == "image/bmp" || $_FILES['f107']['type'] == "image/jpg") {
 								if ($_FILES['f105']['type'] == "image/jpeg" || $_FILES['f105']['type'] == "image/png" || $_FILES['f105']['type'] == "image/bmp" || $_FILES['f105']['type'] == "image/jpg") {
-									if ($_FILES['f102']['type'] == "image/jpeg" || $_FILES['f102']['type'] == "image/png" || $_FILES['f102']['type'] == "image/bmp" || $_FILES['f102']['type'] == "image/jpg") {
+									if ($_FILES['f201']['type'] == "image/jpeg" || $_FILES['f201']['type'] == "image/png" || $_FILES['f201']['type'] == "image/bmp" || $_FILES['f201']['type'] == "image/jpg") {
 										if ($this->upload->do_upload('ktpayah')) {
 
 											$uploadData = $this->upload->data();
