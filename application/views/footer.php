@@ -3,6 +3,7 @@
 <script src="<?= base_url() ?>assets/dashboard/js/jquery-3.2.1.min.js"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/jquery.easing.min.js"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/popper.js"></script>
+<script src="<?= base_url() ?>assets/dashboard/font-awesome/js/all.min.js"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/bootstrap.min.js"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/stellar.js"></script>
 <script src="<?= base_url() ?>assets/dashboard/vendors/lightbox/simpleLightbox.min.js"></script>

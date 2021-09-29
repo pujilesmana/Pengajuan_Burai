@@ -175,6 +175,7 @@ wrapper -->
 									</button>
 								</div>
 								<div class="modal-body">
+									<p class="mb-3"><i class="text-danger">Klik gambar file jika ingin melihat file</i></p>
 									<div class="row fileSyarat">
 
 									</div>
@@ -202,6 +203,7 @@ wrapper -->
 											<input type="hidden" name="status" value="1">
 											<label for="">Upload Surat</label>
 											<input class="form-control" type="file" name="surat">
+											<i class="text-danger">Format harus pdf atau doc</i>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -391,9 +393,14 @@ wrapper -->
 			});
 		});
 
+
+
 		$('.list-surat').on('click', '#syarat', function() {
 			const id = $(this).attr('data-id');
 			const kategori = $(this).attr('data-kategori');
+
+
+
 
 			$.ajax({
 				type: "GET",
@@ -404,74 +411,47 @@ wrapper -->
 				},
 				success: function(data) {
 					const datafilter = JSON.parse(data[0].pengajuan_file);
-					if (kategori == "Surat Keterangan Tidak Mampu") {
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
+					var element = '';
+
+					function layoutDownload(file, title) {
+
+						element += '<div class="col-xl-2 col-4 mb-30">';
 						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktp + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP</b></p>'
+						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + file + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
+						element += '<p style="margin-left:8px;"><b>' + title + '</b></p>'
+						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + file + '" style="margin-left:0px;" download><button class="btn btn-primary">Download</button></a>'
 						element += '</div></div>';
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.rumah + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Rumah</b></p>'
-						element += '</div></div>';
+						return element;
+					}
+
+					if (kategori == "Surat Keterangan Tidak Mampu") {
+
+						layoutDownload(datafilter.ktp, "Foto KTP");
+
+						layoutDownload(datafilter.rumah, "Foto Rumah");
 
 						$('.fileSyarat').html(element);
 					} else if (kategori == "Surat Keterangan Tidak Terdaftar Jaminan Sosial") {
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktp + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktp, "Foto KTP");
 
 						$('.fileSyarat').html(element);
 					} else if (kategori == "Surat Domisili") {
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktp + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktp, "Foto KTP");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.kk + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KK</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.kk, "Foto KK");
 
 						$('.fileSyarat').html(element);
 					} else if (kategori == "Surat Keterangan Usaha") {
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktp + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktp, "Foto KTP");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.kk + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KK</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.kk, "Foto KK");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.usaha + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Usaha</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.usaha, "Foto Usaha");
 
 						$('.fileSyarat').html(element);
 					} else if (kategori == "Surat Keterangan Meninggal Dunia") {
-
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktp + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktp, "Foto KTP");
 
 						element += '<div class="col-xl-5 col-lg-5 mb-30">';
 						element += '<div class="file-box">';
@@ -480,77 +460,33 @@ wrapper -->
 
 						$('.fileSyarat').html(element);
 					} else if (kategori == "Surat Keterangan Beda Identitas") {
+						layoutDownload(datafilter.ktp, "Foto KTP");
 
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktp + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.kk, "Foto KK");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.kk + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KK</b></p>'
-						element += '</div></div>';
-
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ijazah + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Ijazah</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ijazah, "Foto Ijazah");
 
 						$('.fileSyarat').html(element);
 
 					} else if (kategori == "Surat Pengantar Perkawinan") {
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktp + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktp, "Foto KTP");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.kk + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KK</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.kk, "Foto KK");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.kkotcl + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Orang Tua Calon Laki-Laki</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.kkotcl, "Foto Orang Tua Calon Laki-Laki");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.kkotcp + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Orang Tua Calon Perempuan</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.kkotcp, "Foto Orang Tua Calon Perempuan");
 
 						$('.fileSyarat').html(element);
 
 					} else if (kategori == "Surat Keterangan Penghasilan") {
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktp + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktp, "Foto KTP");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.kktbs + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KK yang bersangkutan</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.kktbs, "Foto KK yang bersangkutan");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.kk + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KK</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.kk, "Foto KK");
 
-						element += '<div class="col-xl-5 col-lg-5 mb-30">';
+						element += '<div class="col-xl-5 col-sm-5 mb-30">';
 						element += '<div class="file-box">';
 						element += '<p style="margin-left:11px;"><b>Jumlah Pengahasilan Kotor : ' + datafilter.jmlhpenghasilankotor + '</b></p>'
 						element += '</div></div>';
@@ -559,205 +495,80 @@ wrapper -->
 
 					} else if (kategori == "Surat Tanah Pengakuan Hak dan Surat Keterangan Tanah") {
 
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktp + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktp, "Foto KTP");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.kk + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KK</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.kk, "Foto KK");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.suratpermohonanKD + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Surat Permohonan Kepada Kepala Desa</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.suratpermohonanKD, "Foto Surat Permohonan Kepada Kepala Desa");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.suratpermohonanKD + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Surat Permohonan Kepada Camat</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.suratpermohonanKD, "Foto Surat Permohonan Kepada Camat");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.suratjualbeli + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Surat Jual Beli/surat hibah/surat keterangan ahli waris (asli)</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.suratjualbeli, "Foto Surat Jual Beli/surat hibah/surat keterangan ahli waris (asli)");
 
 						$('.fileSyarat').html(element);
 
 					} else if (kategori == "Akta kelahiran dan KK") {
 
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktpayah + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP Ayah</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktpayah, "Foto KTP Ayah");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktpibu + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP Ibu</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktpibu, "Foto KTP Ibu");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.bukunikah + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Buku Nikah</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.bukunikah, "Foto Buku Nikah");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.suratketeranganlahiranak + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Surat keterangan lahir anak dari bidan/klinik/rumah sakit </b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.suratketeranganlahiranak, "Foto Surat keterangan lahir anak dari bidan/klinik/rumah sakit");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f107 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F1.07</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.f107, "Foto F1.07");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f105 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F1.05</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.f105, "Foto F1.05");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f201 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F2.01</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.f201, "Foto F2.01");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f203 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F2.03</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.f203, "Foto F2.03");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f204 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F2.04</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.f204, "Foto F2.04");
 
 						$('.fileSyarat').html(element);
 
 					} else if (kategori == "Akta kematian dan KK") {
+						layoutDownload(datafilter.ktpk, "Foto ktp yang akan di buatkan akta kematian");
 
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktpk + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto ktp yang akan di buatkan akta kematian</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.kk, "Foto KK");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.kk + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KK</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.skmd, "Foto Surat keterangan meninggal dunia dari Desa");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.skmd + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Surat keterangan meninggal dunia dari Desa</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.f107, "Foto F1.07");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f107 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F1.07 </b></p>'
-						element += '</div></div>';
-
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f101 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F1.01</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.f101, "Foto F1.01");
 
 						$('.fileSyarat').html(element);
 
 					} else if (kategori == "Penerbitan kartu keluarga hilang / rusak") {
 
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktpayah + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP Ayah</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktpayah, "Foto KTP Ayah");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktpibu + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP Ibu</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktpibu, "Foto KTP Ibu");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.bukunikah + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Buku Nikah</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.bukunikah, "Foto Buku Nikah");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f107 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F1.07</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.f107, "Foto F1.07");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f102 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F1.02</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.f102, "Foto F1.02");
 
 						$('.fileSyarat').html(element);
 
 					} else if (kategori == "Kartu keluarga baru") {
-						var element = '';
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktpayah + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP Ayah</b></p>'
-						element += '</div></div>';
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.ktpibu + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto KTP Ibu</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktpayah, "Foto KTP Ayah");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.bukunikah + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto Buku Nikah</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.ktpibu, "Foto KTP Ibu");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f107 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F1.07</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.bukunikah, "Foto Buku Nikah");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f105 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F1.05</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.f107, "Foto F1.07");
 
-						element += '<div class="col-xl-2 col-lg-2 mb-30">';
-						element += '<div class="file-box">';
-						element += '<a href="<?= base_url() ?>assets/dashboard/image/uploads/' + datafilter.f201 + '" target="_blank"><img class="img-fluid mb-1" data-toggle="tooltip" data-placement="top" data-title="KTP" src="<?= base_url() ?>assets/admin/images/file-icon/PNG.png" alt=""></a>';
-						element += '<p style="margin-left:11px;"><b>Foto F2.01</b></p>'
-						element += '</div></div>';
+						layoutDownload(datafilter.f105, "Foto F1.05");
+
+						layoutDownload(datafilter.f201, "Foto F2.01");
 
 						$('.fileSyarat').html(element);
 					}

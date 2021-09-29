@@ -143,7 +143,7 @@ a:hover, a:focus {
 }
 
 .section_gap {
-  padding: 60px 0px;
+  padding: 120px 0px;
 }
 
 @media (max-width: 1224px) {
@@ -276,7 +276,7 @@ a:hover, a:focus {
 }
 
 .header_area .navbar .nav .nav-item .nav-link {
-  font: 500 12px/80px "Roboto", sans-serif;
+  font: 500 12px/80px "Poppins", sans-serif;
   text-transform: uppercase;
   color: #222222;
   padding: 0px;
@@ -577,10 +577,10 @@ a:hover, a:focus {
 /* Home Banner Area css
 ============================================================================================ */
 .home_banner_area {
-  background: url(../image/banner1.png) no-repeat center bottom;
+  background: url(../img/banner/banner-bg.jpg) no-repeat center bottom;
   position: relative;
   z-index: 1;
-  /* min-height: 900px; */
+  min-height: 900px;
 }
 
 .home_banner_area .overlay {
@@ -597,7 +597,6 @@ a:hover, a:focus {
 .home_banner_area .banner_inner {
   position: relative;
   width: 100%;
-	min-height: 617px;
 }
 
 .home_banner_area .banner_inner .banner_content {

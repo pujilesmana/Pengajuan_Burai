@@ -18,8 +18,6 @@
 					$pengajuan_nik = $i['pengajuan_nik'];
 					$pengajuan_tanggal = $i['tanggal'];
 					$pengajuan_kategori = $i['pengajuan_kategori'];
-					$pengajuan_ktp = $i['pengajuan_ktp'];
-					$pengajuan_kk = $i['pengajuan_kk'];
 					$pengajuan_status = $i['pengajuan_status'];
 					$pengajuan_surat = $i['pengajuan_surat'];
 					$pengajuan_catatan = $i['pengajuan_catatan'];

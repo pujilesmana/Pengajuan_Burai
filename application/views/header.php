@@ -13,7 +13,7 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/css/bootstrap.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/vendors/linericon/style.css">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/font-awesome/css/all.min.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/vendors/owl-carousel/owl.carousel.min.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/vendors/lightbox/simpleLightbox.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/vendors/nice-select/css/nice-select.css">
@@ -54,12 +54,18 @@
 										<li class="nav-item">
 											<a class="nav-link" href="<?= base_url() ?>Download">Download</a>
 										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="https://desaburai.oganilirkab.go.id/">Official Desa Burai</a>
+										</li>
 									<?php elseif ($sidebar == "download") : ?>
 										<li class="nav-item">
 											<a class="nav-link" href="<?= base_url() ?>">Pengajuan</a>
 										</li>
 										<li class="nav-item active">
 											<a class="nav-link" href="<?= base_url() ?>Download">Download</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="https://desaburai.oganilirkab.go.id/">Official Desa Burai</a>
 										</li>
 									<?php endif; ?>
 								</ul>
